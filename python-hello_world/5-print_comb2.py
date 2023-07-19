@@ -1,5 +1,2 @@
-for num in range(100)
-if num < 99:
-    print("{:02d}, ".format(num), end="")
-else:
-    print("{:02d}\n".format(num), end="")
+for i in range(100):
+    print("{:02d}".format(i),end=","if i < 99 else \n")
