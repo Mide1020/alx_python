@@ -7,7 +7,7 @@ Last_digit = abs(number) %10
 string = ""
 
 if number < 0:
-    Last_digit = -last_digit
+    Last_digit = -Last_digit
 
     if Last_digit > 5:
         string = "greater than 5"
