@@ -1,3 +1,5 @@
 def add(a, b):
-    return a + b
-print(add(5, 6))
+ return a + b
+
+ result = add(5, 10)
+ print(result)
