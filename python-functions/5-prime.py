@@ -1,7 +1,7 @@
 def is_prime(number):
-    number = 5
+
     if number <=1:
-        return False
+        return True
     
     for i in range(2,number):
         if number % i == 0:
