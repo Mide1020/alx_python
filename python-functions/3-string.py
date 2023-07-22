@@ -1,3 +1,3 @@
 def reverse_string(string):
-    return string[::-1]
-print(string)
+    return string [::-1]
+reverse_string("hello")
