@@ -13,6 +13,6 @@ else:
         print("{} arguments were passed:".format(num_args))
 
     for i, arg in enumerate(args, 1):
-        print("{}: {}".format(i, arg))
+        print("{}:{}".format(i, arg))
 if __name__  == "__main__":
     print()
