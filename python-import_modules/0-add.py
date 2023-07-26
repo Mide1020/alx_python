@@ -1,4 +1,10 @@
-def add(a, b):
-    return a + b
-result = add(1, 2)
-print(result)
+#!/user/bin/python3
+from add_0 import add
+a = 1
+b = 2
+result = add(a, b)
+
+print("{} + {} = {}".format('a', 'b', 'result'))
+
+
+    
