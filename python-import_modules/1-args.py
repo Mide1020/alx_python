@@ -8,7 +8,7 @@ if num_args == 0:
     print("No arguments were passed.")
 else:
     if num_args == 1:
-        print("1 argument was passed:")
+        print("1 arguments:")
     else:
         print("{} arguments were passed:".format(num_args))
 
