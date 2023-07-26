@@ -1,9 +1,7 @@
 #!/usr/bin/python
 import sys
-
 args = sys.argv[1:]
 num_args = len(args)
-
 if num_args == 0:
     print("No arguments were passed.")
 else:
