@@ -1,5 +1,4 @@
-#!/usr/bin/python3
-def safe_print_division(a, b):
+def divide_integers(a, b):
     try:
         result = a / b
         return result
@@ -8,4 +7,3 @@ def safe_print_division(a, b):
     finally:
         print("Inside result: {}".format(result))
 
-result = 3-safe_print_division(10, 2)
