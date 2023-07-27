@@ -1,6 +1,6 @@
 if __name__ == "__main__":
-    a = 98
+    a = 89
     if a is not None:
-        print("The value of 'a' is:", a)
+        print(a)
     else:
         print("Failed to load variable 'a'")
