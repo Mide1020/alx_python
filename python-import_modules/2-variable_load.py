@@ -3,4 +3,4 @@ if __name__ == "__main__":
     if a is not None:
         print(a)
     else:
-        print("Failed to load variable 'a'")
+        print("-100")
