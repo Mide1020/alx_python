@@ -1,5 +1,5 @@
 if __name__ == "__main__":
-    a = "variable_load_2", "a"
+    a = 98
     if a is not None:
         print("The value of 'a' is:", a)
     else:
