@@ -17,5 +17,5 @@ class Square:
         size(self, value): Setter method to set the size of the square.
         area(self): Calculates and returns the area of the square.
     """
-    def _init_(self, size):
+    def __init__(self, size):
      self.__size = size
