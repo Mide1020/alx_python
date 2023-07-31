@@ -9,7 +9,7 @@ The size attribute can be accessed using a property 'size' with a setter for val
 class Square:
       """A class representing a square.
 
-    Attributes:
+     Attributes:
         __size (int): The size of the square.
 
     Methods:
