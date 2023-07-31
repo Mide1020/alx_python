@@ -7,9 +7,9 @@ The size attribute can be accessed using a property 'size' with a setter for val
 """
 
 class Square:
-      """A class representing a square.
+    """A class representing a square.
 
-     Attributes:
+    Attributes:
         __size (int): The size of the square.
 
     Methods:
@@ -18,7 +18,7 @@ class Square:
         size(self, value): Setter method to set the size of the square.
         area(self): Calculates and returns the area of the square.
     """
-      def _init_(self, size=0):
+    def _init_(self, size=0):
         if not isinstance(size, int):
             raise TypeError("size must be an integer")
         elif size < 0:
