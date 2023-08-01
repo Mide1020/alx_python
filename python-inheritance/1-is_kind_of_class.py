@@ -12,8 +12,3 @@ def is_kind_of_class(obj, a_class):
         the specified class; otherwise False.
     """
     return isinstance(obj, a_class)
-
-
-# Test cases
-a = 1
-print(is_kind_of_class(a, int))  # Output: True
