@@ -1,13 +1,26 @@
 """this class define BaseGeometry class
 """
+#!/usr/bin/python3
+"""4-base_geometry.py"""
+
 
 class BaseGeometry:
-    """A base geometry class that defines the area method.
-
-    This class provides a base implementation for the area method, which can
-    be used by subclasses to calculate the area of different shapes.
-"""
-    
+    """BaseGeometry class"""
 
     def area(self):
-        raise NotImplementedError("area() is not implemented")
+        """Raises an Exception with the message area() is not implemented"""
+        raise Exception("area() is not implemented")
+
+    def integer_validator(self, name, value):
+        """Validates value
+        Args:
+            name (str): name of the parameter
+            value (int): value to validate
+        Raises:
+            TypeError: if value is not an integer
+            ValueError: if value is less or equal to 0
+        """
+        if type(value) is not int:
+            raise TypeError("{} must be an integer".format(name))
+        if value <= 0:
+            raise ValueError("{} must be greater than 0".format(name))
