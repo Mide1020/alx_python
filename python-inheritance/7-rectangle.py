@@ -3,27 +3,42 @@
 
 class BaseGeometry:
 
- """
-  create a class for BaseGeometry
-"""
-def area(self):
-        raise Exception("area() is not implemented")
+    """A class representing a rectangle.
 
-def integer_validator(self, name, value):
-        if not isinstance(value, int):
-            raise TypeError("{} must be an integer".format(name))
-        if value <= 0:
-            raise ValueError("{} must be greater than 0".format(name))
+    Attributes:
+        __width (int): The width of the rectangle.
+        __height (int): The height of the rectangle.
+    """
 
-class Rectangle(BaseGeometry):
-    def __init__(self, width, height):
-        self.__width = width
-        self.__height = height
+def __init__(self, width, height):
+        """Initializes a Rectangle instance with the given width and height.
+
+        Args:
+            width (int): The width of the rectangle.
+            height (int): The height of the rectangle.
+
+        Raises:
+            TypeError: If width or height is not an integer.
+            ValueError: If width or height is less than or equal to 0.
+        """
         self.integer_validator("width", width)
         self.integer_validator("height", height)
+        self.__width = width
+        self.__height = height
 
-    def area(self):
+def area(self):
+        """Calculates the area of the rectangle.
+
+        Returns:
+            The area of the rectangle.
+        """
         return self.__width * self.__height
 
-    def __str__(self):
+def __str__(self):
+        """Returns a string representation of the rectangle.
+
+        Returns:
+            A string representation of the rectangle in the format:
+            "[Rectangle] <width>/<height>"
+        """
         return "[Rectangle] {}/{}".format(self.__width, self.__height)
