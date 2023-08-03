@@ -1,8 +1,7 @@
-"""
-this class rectangle that inherits from geometry
-"""
 #!/usr/bin/python3
 """6-rectangle.py"""
+
+
 class BaseGeometry:
     """BaseGeometry class"""
 
@@ -38,3 +37,5 @@ class Rectangle(BaseGeometry):
         self.integer_validator("height", height)
         self.__width = width
         self.__height = height
+
+
