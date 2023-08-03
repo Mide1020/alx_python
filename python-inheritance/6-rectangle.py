@@ -1,3 +1,7 @@
+"""this is a class rectangle that inherits from basegeometry
+ """
+
+
 class BaseGeometry:
     """BaseGeometry class"""
 
@@ -41,3 +45,4 @@ class Rectangle(BaseGeometry):
                 raise ValueError("width and height must be greater than 0")
         else:
             raise TypeError("width and height must be integers")
+
