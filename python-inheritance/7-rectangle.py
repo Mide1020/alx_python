@@ -5,8 +5,7 @@
 class BaseGeometry:
     """A class representing a base geometry.
 
-    Attributes:
-        None.
+
     """
 
     def area(self):
