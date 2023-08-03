@@ -18,13 +18,18 @@ class Square:
         size(self, value): Setter method to set the size of the square.
         area(self): Calculates and returns the area of the square.
     """
-    def _init_(self, size=0):
-        if not isinstance(size, int):
-            raise TypeError("size must be an integer")
-        elif size < 0:
-            raise ValueError("size must be >= 0")
-        else:
-            self.__size = size
+    def is_same_class(obj, a_class):
+     """
+    This function checks if an object is exactly an instance of a specified class.
 
-    def area(self):
-        return self.__size ** 2
+    Args:
+    obj: Any object.
+    a_class: Any class.
+
+    Returns:
+    True if the object is exactly an instance of the specified class, otherwise False.
+    """
+     if type(obj) == a_class:
+        return True
+     else:
+        return False
