@@ -4,10 +4,6 @@
 class BaseGeometry:
 
     """A class representing a rectangle.
-
-    Attributes:
-        __width (int): The width of the rectangle.
-        __height (int): The height of the rectangle.
     """
 
 def __init__(self, width, height):
