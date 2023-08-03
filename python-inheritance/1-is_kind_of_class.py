@@ -1,14 +1,13 @@
+"""
+instance class inheritance task
+"""
+
+
 def is_kind_of_class(obj, a_class):
     """
-    Check if the object is an instance of, or if the object is an instance of a class that inherited from,
-    the specified class.
-
-    Args:
-        obj: The object to be checked.
-        a_class: The specified class to compare against.
-
-    Returns:
-        True if the object is an instance of, or if the object is an instance of a class that inherited from,
-        the specified class; otherwise False.
+    checks if the object is an instance of a_class or any subclass of a_class
     """
-    return isinstance(obj, a_class)
+    if type(obj) == a_class or issubclass(type(obj), a_class):
+        return True
+    else:
+        return False
