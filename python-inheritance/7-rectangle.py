@@ -1,28 +1,25 @@
-#!/usr/bin/python3
-"""Rectangle module"""
+"""this is a class rectangle that inherits baseGeometry
+"""
 
-BaseGeometry = __import__('5-base_geometry').BaseGeometry
+class BaseGeometry:
+    def area(self):
+        raise Exception("area() is not implemented")
 
+    def integer_validator(self, name, value):
+        if not isinstance(value, int):
+            raise TypeError("{} must be an integer".format(name))
+        if value <= 0:
+            raise ValueError("{} must be greater than 0".format(name))
 
 class Rectangle(BaseGeometry):
-    """A class that inherits from BaseGeometry"""
-
-    def _init_(self, width, height):
-        """Initialize a Rectangle instance
-
-        Args:
-            width (int): The width of the rectangle
-            height (int): The height of the rectangle
-        """
-        self.integer_validator("width", width)
-        self.integer_validator("height", height)
+    def __init__(self, width, height):
         self.__width = width
         self.__height = height
+        self.integer_validator("width", width)
+        self.integer_validator("height", height)
 
     def area(self):
-        """Return the area of the rectangle"""
         return self.__width * self.__height
 
-    def _str_(self):
-        """Return the string representation of the rectangle"""
+    def __str__(self):
         return "[Rectangle] {}/{}".format(self.__width, self.__height)
