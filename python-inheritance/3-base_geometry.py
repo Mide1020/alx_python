@@ -2,6 +2,7 @@
 """
 
 class BaseGeometry:
+ """this class doesn't have any attribute or method defined in it 
+ """
  pass
-"""this is an empty class
-"""
+
