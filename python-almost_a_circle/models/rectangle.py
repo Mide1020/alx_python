@@ -1,97 +1,114 @@
 #!/usr/bin/python3
 
+"""this is how to write rectangle class
+"""
 
 
 from models.base import Base
 
-
-
 class Rectangle(Base):
+ """representng a rectangle
+ """
 
 
-    def __init__(self, width, height, x=0, y=0, id=None):
+def __init__(self, width, height, x=0, y=0, id=None):
+ """Initializing a new Rectangle
+  Args:
+       width (int): The width of the new Rectangle.
+       height (int): the height of the new rectangle.
+       x (int): the x coordinate of the new rectangle.
+       y (int): the y coordinate of the new rectangle.
+       id(int): the identity of the new rectangle
+  Raises:
+       Typeerror: if either of widht or height is not an int.
+       ValueError: if either of widht or height <-0.
+       TypeError: if either of x or y is not an int.
+       ValueError:if either of x or y < 0.
+  """
+ super(self).__init__(id)
+ self.width = width
+ self.height = height
+ self.x = x
+ self.y = y
 
-        self.width = width
-
-        self.height = height
-
-        self.x = x
-
-        self.y = y
-
-        super().__init__(id)
 
 
-    @property
+@property
 
-    def width(self):
+def width(self):
+     """set/get the width of the Rectangle.
+      """
 
-        return self.__width
+     return self.__width
 
 
-    @width.setter
+@width.setter
 
-    def width(self, value):
+def width(self, value):
 
         self.setter_validation("width", value)
 
         self.__width = value
 
 
-    @property
+@property
 
-    def height(self):
+def height(self):
+ """set/get the height of the rectangle
+    """
+ return self.__height
 
-        return self.__height
+"""setting the height of the rectangle
+"""
+
+@height.setter
+
+def height(self, value):
+ """the height function
+   """
+
+ self.setter_validation("height", value)
+
+ self.__height = value
 
 
-    @height.setter
+@property
 
-    def height(self, value):
-
-        self.setter_validation("height", value)
-
-        self.__height = value
-
-
-    @property
-
-    def x(self):
+def x(self):
 
         return self.__x
 
 
-    @x.setter
-
-    def x(self, value):
+@x.setter
+def x(self, value):
 
         self.setter_validation("x", value)
 
         self.__x = value
 
 
-    @property
+@property
 
-    def y(self):
+def y(self):
 
         return self.__y
 
 
-    @y.setter
+@y.setter
 
-    def y(self, value):
+def y(self, value):
 
         self.setter_validation("y", value)
 
         self.__y = value
 
 
-    def area(self):
+def area(self):
 
         return (self.height * self.width)
 
 
-    def display(self):
+def display(self):
 
         rectangle = ""
 
@@ -104,7 +121,7 @@ class Rectangle(Base):
         print(rectangle, end="")
 
 
-    def update(self, *args, **kwargs):
+def update(self, *args, **kwargs):
 
         if len(args) == 0:
 
@@ -131,7 +148,7 @@ class Rectangle(Base):
             pass
 
 
-    def to_dictionary(self):
+def to_dictionary(self):
 
         return {'x': getattr(self, "x"),
 
@@ -144,9 +161,9 @@ class Rectangle(Base):
                 'width': getattr(self, "width")}
 
 
-    @staticmethod
+@staticmethod
 
-    def setter_validation(attribute, value):
+def setter_validation(attribute, value):
 
         if type(value) != int:
 
@@ -163,7 +180,7 @@ class Rectangle(Base):
             raise ValueError("{} must be > 0".format(attribute))
 
 
-    def __str__(self):
+def __str__(self):
 
         return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x, self.y,
 
