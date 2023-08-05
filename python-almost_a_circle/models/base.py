@@ -1,3 +1,6 @@
+"""this is to write the first class base
+"""
+
 class Base:
     """Base class for all future classes in this project.
     Manages the id attribute in all future classes and avoids duplicating the same code and bugs
