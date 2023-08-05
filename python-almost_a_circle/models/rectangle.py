@@ -74,6 +74,8 @@ def x(self):
         int: The x-coordinate of
         """
 def x(self, value):
+   """defining the properties of function x
+   """
    if type(value) != int:
       raise TypeError("x must be an integer")
    if value < 0:
