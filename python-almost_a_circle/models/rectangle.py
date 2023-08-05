@@ -1,9 +1,10 @@
 """this is how to write rectangle class
 """
 #!/usr/bin/python3
+#!/usr/bin/python3
 
 """This defines a rectangle class"""
-from models.base import Base
+from base import Base
 
 class Rectangle(Base):
  """representng a rectangle
@@ -61,13 +62,17 @@ def height(self, value):
       raise ValueError("height must be > 0")
    self.__height = value
 
-   #property
+   """setting the properties of the x function
+   """
 def x(self):
       """set/get the x coordinate of the rectangle
       """
       return self.__x
    
-   #x.setter
+"""Getter method for the x attribute.
+        Returns:
+        int: The x-coordinate of
+        """
 def x(self, value):
    if type(value) != int:
       raise TypeError("x must be an integer")
