@@ -1,14 +1,14 @@
 import requests
 import sys
 
-if len(sys.argv) != 2:
-    print("Usage: {} <URL>".format(sys.argv[0]))
+if len(sys.argv)  != 3:
+    print("Usage: {} <URL> <email>".format(sys.argv[0]))
     sys.exit(1)
 
-url = sys.argv[1]
-email = sys.argv[2]
+    url = sys.argv[1]
+    email = sys.argv[2]
 
-data ={'emal': email}
-response = requests.post(url, data=data)
+    data = {'email' : email}
+    response = requests.post(url, data=data)
 
-print(response.text)
+    print(response.text)
