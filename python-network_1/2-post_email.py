@@ -8,7 +8,7 @@ if len(sys.argv) != 2:
 url = sys.argv[1]
 email = sys.argv[2]
 
-data =b{'emal': email}
+data ={'emal': email}
 response = requests.post(url, data=data)
 
 print(response.text)
