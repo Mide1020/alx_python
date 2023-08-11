@@ -6,11 +6,9 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 url = sys.argv[1]
+email = sys.argv[2]
 
-response = requests.get(url)
-status_code = response.status_code
+data =b{'emal': email}
+response = requests.post(url, data=data)
 
-if status_code >= 400:
-    print("Error code:", status_code)
-else:
-    print(response.text)
+print(response.text)
