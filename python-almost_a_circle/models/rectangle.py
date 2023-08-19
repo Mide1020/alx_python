@@ -28,8 +28,6 @@ class Rectangle(Base):
 
         - __init__(self, width, height, x=0, y=0, id=None): Initializes a Rectangle instance.
 
-        - area(self): Returns the area of the Rectangle instance.
-
     """
 
     def __init__(self, width, height, x=0, y=0, id=None):
@@ -186,30 +184,40 @@ class Rectangle(Base):
 
                 raise ValueError(f"{name} must be >= 0")
 
-    def area(self):
-
-        """
-
-        Calculate and return the area of the rectangle.
-
-        Returns:
-
-            int: The area of the rectangle.
-
-        """
-
-        return self.__width * self.__height
-
 if __name__ == "__main__":
 
-    r1 = Rectangle(3, 2)
+    try:
 
-    print(r1.area())
+        Rectangle(10, "2")
 
-    r2 = Rectangle(2, 10)
+    except Exception as e:
 
-    print(r2.area())
+        print("[{}] {}".format(e.__class__.__name__, e))
 
-    r3 = Rectangle(8, 7, 0, 0, 12)
+    try:
 
-    print(r3.area()) 
+        r = Rectangle(10, 2)
+
+        r.width = -10
+
+    except Exception as e:
+
+        print("[{}] {}".format(e.__class__.__name__, e))
+
+    try:
+
+        r = Rectangle(10, 2)
+
+        r.x = {}
+
+    except Exception as e:
+
+        print("[{}] {}".format(e.__class__.__name__, e))
+
+    try:
+
+        Rectangle(10, 2, 3, -1)
+
+    except Exception as e:
+
+        print("[{}] {}".format(e.__class__.__name__, e))
