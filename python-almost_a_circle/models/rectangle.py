@@ -172,20 +172,52 @@ class Rectangle(Base):
 
             raise TypeError(f"{name} must be an integer")
 
-        if value < 0:
+        if name == "width" or name == "height":
 
-            raise ValueError(f"{name} must be >= 0")
+            if value <= 0:
+
+                raise ValueError(f"{name} must be > 0")
+
+        elif name == "x" or name == "y":
+
+            if value < 0:
+
+                raise ValueError(f"{name} must be >= 0")
 
 if __name__ == "__main__":
 
-    r1 = Rectangle(10, 2)
+    try:
 
-    print(http://r1.id)
+        Rectangle(10, "2")
 
-    r2 = Rectangle(2, 10)
+    except Exception as e:
 
-    print(http://r2.id)
+        print("[{}] {}".format(e.__class__.__name__, e))
 
-    r3 = Rectangle(10, 2, 0, 0, 12)
+    try:
 
-    print(http://r3.id)
+        r = Rectangle(10, 2)
+
+        r.width = -10
+
+    except Exception as e:
+
+        print("[{}] {}".format(e.__class__.__name__, e))
+
+    try:
+
+        r = Rectangle(10, 2)
+
+        r.x = {}
+
+    except Exception as e:
+
+        print("[{}] {}".format(e.__class__.__name__, e))
+
+    try:
+
+        Rectangle(10, 2, 3, -1)
+
+    except Exception as e:
+
+        print("[{}] {}".format(e.__class__.__name__, e))
