@@ -109,7 +109,7 @@ class Rectangle(Base):
 # Example usage
 if __name__ == "__main__":
     try:
-        r = Rectangle("invalid", 5, 2, 7, 1)
+        r = Rectangle(10, 5.5, 2, 7, 1)
         print(r)
         r.display()
     except (TypeError, ValueError) as e:
