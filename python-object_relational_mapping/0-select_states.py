@@ -2,7 +2,7 @@
 """Module that lists all states from MYSL database
 """
 import sys
-import MYSQLdb
+import MYSQLdb from MYSQLdb
 
 def list_states (username, password, database):
     """connect to the MYSQL server"""
