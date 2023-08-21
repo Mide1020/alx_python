@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-"""Module that lists all states from MYSL database
+"""Module that lists all states from MySQL database
 """
 import sys
-import MYSQLdb from MYSQLdb
+import MySQLdb from MySQLdb
 
 def list_states (username, password, database):
     """connect to the MYSQL server"""
-db = MYSQLdb.connect(host = "localhost", port = 3306, user=username, passwd=password, db=database)
+db = MySQLdb.connect(host = "localhost", port = 3306, user=username, passwd=password, db=database)
 cursor = db.cursor()
 
 """Execute the SQL query to fetch all states"""
