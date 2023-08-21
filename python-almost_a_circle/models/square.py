@@ -1,5 +1,6 @@
 from models.rectangle import Rectangle
 
+
 class Square(Rectangle):
     """A class representing a Square that inherits from Rectangle."""
 
