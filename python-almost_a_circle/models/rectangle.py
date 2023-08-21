@@ -108,9 +108,7 @@ class Rectangle(Base):
 
 # Example usage
 if __name__ == "__main__":
-    try:
-        r = Rectangle(10, 5.5, 2, 7, 1)
-        print(r)
-        r.display()
-    except (TypeError, ValueError) as e:
-        print("Error:", e)
+    r = Rectangle(10, 5, 2, 7, 1)
+    print(r)
+    print("Area:", r.area())
+    r.display()
