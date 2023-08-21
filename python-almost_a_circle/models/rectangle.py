@@ -5,47 +5,50 @@
 Module models/rectangle: This module defines the Rectangle class.
 
 """
-from models.base import Base
+from models.rectangle import Rectangle
 
-class Rectangle(Base):
-    """A class representing a Rectangle that inherits from Base."""
+class Square(Rectangle):
+    """A class representing a Square that inherits from Rectangle."""
 
-    def __init__(self, width, height, x=0, y=0, id=None):
-        # (Constructor code as before...)
-
-    # Other methods as before...
-
-    def update(self, *args, **kwargs):
-        """Update the attributes of the rectangle using arguments and keyword arguments.
+    def __init__(self, size, x=0, y=0, id=None):
+        """
+        Initialize a Square instance.
 
         Args:
-            *args: Positional arguments in the order: id, width, height, x, y.
-            **kwargs: Keyword arguments as key/value pairs representing attributes.
+            size (int): The size of the square (width and height).
+            x (int, optional): The x-coordinate of the top-left corner. Defaults to 0.
+            y (int, optional): The y-coordinate of the top-left corner. Defaults to 0.
+            id (int, optional): The ID of the square. If not provided, a new ID will be generated.
+
+        Raises:
+            ValueError: If size is not positive, or if x or y is negative.
+            TypeError: If size, x, or y is not an integer.
         """
-        if args:
-            if len(args) >= 1:
-                self.id = args[0]
-            if len(args) >= 2:
-                self.width = args[1]
-            if len(args) >= 3:
-                self.height = args[2]
-            if len(args) >= 4:
-                self.x = args[3]
-            if len(args) >= 5:
-                self.y = args[4]
-        else:
-            for key, value in kwargs.items():
-                if hasattr(self, key):
-                    setattr(self, key, value)
+        super().__init__(size, size, x, y, id)
+
+    @property
+    def size(self):
+        """int: The size of the square."""
+        return self.width
+
+    @size.setter
+    def size(self, value):
+        """Set the size of the square."""
+        self.width = value
+        self.height = value
+
+    def __str__(self):
+        """Return a string representation of the square.
+
+        Returns:
+            str: The string representation of the square.
+        """
+        return f"[Square] ({self.id}) {self.x}/{self.y} - {self.size}"
 
 # Example usage
 if __name__ == "__main__":
-    r = Rectangle(10, 5, 2, 3, 1)
-    print("Before update:")
-    print(r)
-    r.update(2, 8, 6)
-    print("After positional update:")
-    print(r)
-    r.update(x=4, y=2, width=12)
-    print("After keyword update:")
-    print(r)
+    s = Square(5, 2, 3, 1)
+    print(s)
+    s.size = 8
+    print("After resizing:")
+    print(s)
