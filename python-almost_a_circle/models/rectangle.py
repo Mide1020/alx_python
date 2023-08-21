@@ -92,9 +92,11 @@ class Rectangle(Base):
         return self.width * self.height
 
     def display(self):
-        """Display the rectangle using '#' characters."""
+        """Display the rectangle using '#' characters, considering x and y."""
+        for _ in range(self.y):
+            print()
         for _ in range(self.height):
-            print("#" * self.width)
+            print(" " * self.x + "#" * self.width)
 
     def __str__(self):
         """Return a string representation of the rectangle.
@@ -106,7 +108,7 @@ class Rectangle(Base):
 
 # Example usage
 if __name__ == "__main__":
-    r = Rectangle(10, 5, 2, 7, 1)
+    r = Rectangle(10, 5, 2, 3, 1)
     print(r)
     print("Area:", r.area())
     r.display()
