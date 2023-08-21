@@ -5,219 +5,100 @@
 Module models/rectangle: This module defines the Rectangle class.
 
 """
-
 from models.base import Base
 
 class Rectangle(Base):
-
-    """
-
-    Rectangle class inherits from Base and represents a rectangle.
-
-    Attributes:
-
-        __width (int): The width of the rectangle.
-
-        __height (int): The height of the rectangle.
-
-        __x (int): The horizontal position of the rectangle.
-
-        __y (int): The vertical position of the rectangle.
-
-    Public Methods:
-
-        - __init__(self, width, height, x=0, y=0, id=None): Initializes a Rectangle instance.
-
-    """
+    """A class representing a Rectangle that inherits from Base."""
 
     def __init__(self, width, height, x=0, y=0, id=None):
-
         """
-
         Initialize a Rectangle instance.
 
         Args:
-
             width (int): The width of the rectangle.
-
             height (int): The height of the rectangle.
-
-            x (int, optional): The horizontal position of the rectangle. Defaults to 0.
-
-            y (int, optional): The vertical position of the rectangle. Defaults to 0.
-
-            id (int, optional): The unique identifier of the rectangle. Defaults to None.
-
-        """
-
-        super().__init__(id)
-
-        self.width = width
-
-        self.height = height
-
-        self.x = x
-
-        self.y = y
-
-    
-@property
-
-
-    def width(self):
-
-        """Getter for width."""
-
-        return self.__width
-
-    
-@width
-.setter
-
-    def width(self, value):
-
-        """Setter for width."""
-
-        self.integer_validator("width", value)
-
-        self.__width = value
-
-    
-@property
-
-
-    def height(self):
-
-        """Getter for height."""
-
-        return self.__height
-
-    
-@height
-.setter
-
-    def height(self, value):
-
-        """Setter for height."""
-
-        self.integer_validator("height", value)
-
-        self.__height = value
-
-    
-@property
-
-
-    def x(self):
-
-        """Getter for x."""
-
-        return self.__x
-
-    
-@x
-.setter
-
-    def x(self, value):
-
-        """Setter for x."""
-
-        self.integer_validator("x", value)
-
-        self.__x = value
-
-    
-@property
-
-
-    def y(self):
-
-        """Getter for y."""
-
-        return self.__y
-
-    
-@y
-.setter
-
-    def y(self, value):
-
-        """Setter for y."""
-
-        self.integer_validator("y", value)
-
-        self.__y = value
-
-    def integer_validator(self, name, value):
-
-        """
-
-        Validate if a given value is a positive integer.
-
-        Args:
-
-            name (str): The name of the value being validated.
-
-            value (int): The value to be validated.
+            x (int, optional): The x-coordinate of the top-left corner. Defaults to 0.
+            y (int, optional): The y-coordinate of the top-left corner. Defaults to 0.
+            id (int, optional): The ID of the rectangle. If not provided, a new ID will be generated.
 
         Raises:
-
-            TypeError: If value is not an integer.
-
-            ValueError: If value is not a positive integer.
-
+            ValueError: If width or height is not positive, or if x or y is negative.
         """
+        super().__init__(id)
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
 
-        if not isinstance(value, int):
+    @property
+    def width(self):
+        """int: The width of the rectangle."""
+        return self.__width
 
-            raise TypeError(f"{name} must be an integer")
+    @width.setter
+    def width(self, value):
+        if value <= 0:
+            raise ValueError("Width must be positive.")
+        self.__width = value
 
-        if name == "width" or name == "height":
+    @property
+    def height(self):
+        """int: The height of the rectangle."""
+        return self.__height
 
-            if value <= 0:
+    @height.setter
+    def height(self, value):
+        if value <= 0:
+            raise ValueError("Height must be positive.")
+        self.__height = value
 
-                raise ValueError(f"{name} must be > 0")
+    @property
+    def x(self):
+        """int: The x-coordinate of the top-left corner."""
+        return self.__x
 
-        elif name == "x" or name == "y":
+    @x.setter
+    def x(self, value):
+        if value < 0:
+            raise ValueError("X coordinate cannot be negative.")
+        self.__x = value
 
-            if value < 0:
+    @property
+    def y(self):
+        """int: The y-coordinate of the top-left corner."""
+        return self.__y
 
-                raise ValueError(f"{name} must be >= 0")
+    @y.setter
+    def y(self, value):
+        if value < 0:
+            raise ValueError("Y coordinate cannot be negative.")
+        self.__y = value
 
+    def area(self):
+        """Calculate the area of the rectangle.
+
+        Returns:
+            int: The area of the rectangle.
+        """
+        return self.width * self.height
+
+    def display(self):
+        """Display the rectangle using '#' characters."""
+        for _ in range(self.y):
+            print()
+        for _ in range(self.height):
+            print(" " * self.x + "#" * self.width)
+
+    def __str__(self):
+        """Return a string representation of the rectangle.
+
+        Returns:
+            str: The string representation of the rectangle.
+        """
+        return f"[Rectangle] ({self.id}) {self.x}/{self.y} - {self.width}/{self.height}"
+
+# Example usage
 if __name__ == "__main__":
-
-    try:
-
-        Rectangle(10, "2")
-
-    except Exception as e:
-
-        print("[{}] {}".format(e.__class__.__name__, e))
-
-    try:
-
-        r = Rectangle(10, 2)
-
-        r.width = -10
-
-    except Exception as e:
-
-        print("[{}] {}".format(e.__class__.__name__, e))
-
-    try:
-
-        r = Rectangle(10, 2)
-
-        r.x = {}
-
-    except Exception as e:
-
-        print("[{}] {}".format(e.__class__.__name__, e))
-
-    try:
-
-        Rectangle(10, 2, 3, -1)
-
-    except Exception as e:
-
-        print("[{}] {}".format(e.__class__.__name__, e))
+    r = Rectangle(10, 5, 2, 7, 1)
+    print(r)
+    r.display()
