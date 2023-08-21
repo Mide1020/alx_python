@@ -105,3 +105,12 @@ class Rectangle(Base):
             str: The string representation of the rectangle.
         """
         return f"[Rectangle] ({self.id}) {self.x}/{self.y} - {self.width}/{self.height}"
+
+# Example usage
+if __name__ == "__main__":
+    try:
+        r = Rectangle("invalid", 5, 2, 7, 1)
+        print(r)
+        r.display()
+    except (TypeError, ValueError) as e:
+        print("Error:", e)
