@@ -26,14 +26,9 @@ Usage:
     - http://localhost:5000/python/ for "Python is cool"
     - http://localhost:5000/number/42 for "42 is a number"
     - http://localhost:5000/number_template/42 for an HTML page with "Number: 42"
-
-Note:
-    Ensure that the 'number_template.html' file is located in the same directory
-    as this script for correct rendering of the /number_template/<n> route.
-
 """
 
-from flask import Flask, render_template
+from flask import Flask, render_template_string
 
 app = Flask(__name__)
 
@@ -111,7 +106,8 @@ def number_template(n):
     Returns:
         str: An HTML page with an H1 tag containing "Number: n".
     """
-    return render_template('number_template.html', number=n)
+    html_content = f"<html><body><h1>Number: {n}</h1></body></html>"
+    return render_template_string(html_content)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
