@@ -27,9 +27,9 @@ try:
     # Query and list all State objects, sorted by states.id
     states = session.query(State).order_by(State.id).all()
 
-    # Display the results
+    # Display the results in the specified format
     for state in states:
-        print(state.id, state.name)
+        print(f"{state.id}: {state.name}")
 
 except Exception as e:
     print(f"Error: {e}")
