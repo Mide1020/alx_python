@@ -24,8 +24,8 @@ try:
     # Create a cursor object to interact with the database
     cursor = db.cursor()
 
-    # Execute the SQL query to retrieve all cities and sort them by cities.id
-    cursor.execute("SELECT * FROM cities ORDER BY cities.id ASC")
+    # Execute the SQL query to retrieve cities with their corresponding states
+    cursor.execute("SELECT cities.id, cities.name, states.name FROM cities JOIN states ON cities.state_id = states.id ORDER BY cities.id ASC")
 
     # Fetch all the results
     results = cursor.fetchall()
