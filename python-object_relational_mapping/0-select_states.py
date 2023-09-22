@@ -1,34 +1,38 @@
-#!/usr/bin/python3
-"""Module that lists all states from MySQL database
-"""
+import MySQLdb
 import sys
-from MySQLdb import MySQLdb
 
-def list_states (username, password, database):
-    """connect to the MYSQL server"""
-db = MySQLdb.connect(host = "localhost", port = 3306, user=username, passwd=password, db=database)
+# Check if the correct number of arguments is provided
+if len(sys.argv) != 4:
+    print("Usage: python list_states.py <mysql_username> <mysql_password> <database_name>")
+    sys.exit(1)
+
+# Get command-line arguments
+mysql_username = sys.argv[1]
+mysql_password = sys.argv[2]
+database_name = sys.argv[3]
+
+# Connect to the MySQL server
+db = MySQLdb.connect(
+    host="localhost",
+    port=3306,
+    user=mysql_username,
+    passwd=mysql_password,
+    db=database_name
+)
+
+# Create a cursor object to interact with the database
 cursor = db.cursor()
 
-"""Execute the SQL query to fetch all states"""
-cursor.execute("SELECT * FROM states ORDER BY id ASC")
+# Execute the SQL query to retrieve states
+cursor.execute("SELECT * FROM states ORDER BY states.id ASC")
 
-"""fetch all the rows from query result
-"""
-rows = cursor.fetcha11()
+# Fetch all the results
+results = cursor.fetchall()
 
-"""print the results
-"""
-for row in rows:
+# Display the results
+for row in results:
     print(row)
 
-    """close the database connection
-    """
-    db.close()
-
-    """Example usage"""
-    if __name__ == '__main__':
-        username = sys.argv[1]
-        password = sys.argv[2]
-        database = sys.argv[3]
-
-        list_state(username, password, database)
+# Close the cursor and database connection
+cursor.close()
+db.close()
