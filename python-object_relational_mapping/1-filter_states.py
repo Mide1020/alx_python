@@ -23,15 +23,15 @@ db = MySQLdb.connect(
 # Create a cursor object to interact with the database
 cursor = db.cursor()
 
-# Execute the SQL query to retrieve the state of New York
-cursor.execute("SELECT * FROM states WHERE name = 'New York'")
+# Execute the SQL query to retrieve states starting with 'N'
+cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY states.id ASC")
 
-# Fetch the result (assuming there's only one)
-result = cursor.fetchone()
+# Fetch all the results
+results = cursor.fetchall()
 
-# Display the result
-if result:
-    print(result)
+# Display the results
+for row in results:
+    print(row)
 
 # Close the cursor and database connection
 cursor.close()
