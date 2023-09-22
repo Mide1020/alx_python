@@ -26,15 +26,15 @@ try:
     cursor = db.cursor()
 
     # Use a prepared statement to prevent SQL injection
-    query = "SELECT cities.id, cities.name FROM cities INNER JOIN states ON cities.state_id = states.id WHERE states.name = %s ORDER BY cities.id ASC"
+    query = "SELECT cities.name FROM cities INNER JOIN states ON cities.state_id = states.id WHERE states.name = %s ORDER BY cities.id ASC"
     cursor.execute(query, (state_name,))
 
     # Fetch all the results
     results = cursor.fetchall()
 
-    # Display the results
-    for row in results:
-        print(row)
+    # Display the results as a comma-separated string
+    city_names = ', '.join(row[0] for row in results)
+    print(city_names)
 
 except MySQLdb.Error as e:
     print(f"Error: {e}")
