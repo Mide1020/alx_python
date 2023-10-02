@@ -42,3 +42,4 @@ def get_employee_info(employee_id):
 if __name__ == "__main__":
     employee_id = int(input("Enter the employee ID: "))
     get_employee_info(employee_id)
+    
