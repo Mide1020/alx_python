@@ -1,46 +1,40 @@
 import requests
 import sys
 
-def get_employee_info(employee_id):
-    # Define the base URL for the API
+def get_employee_todo_progress(employee_id):
     base_url = "https://jsonplaceholder.typicode.com"
 
-    # Make a GET request to the employee details endpoint
+    # Construct URLs for employee details and TODO list
     employee_url = f"{base_url}/users/{employee_id}"
-    response = requests.get(employee_url)
-
-    if response.status_code != 200:
-        print(f"Failed to retrieve employee information for ID {employee_id}")
-        return
-
-    employee_data = response.json()
-    employee_name = employee_data.get("name")
-
-    # Make a GET request to the employee's TODO list endpoint
     todo_url = f"{base_url}/users/{employee_id}/todos"
-    response = requests.get(todo_url)
 
-    if response.status_code != 200:
-        print(f"Failed to retrieve TODO list for ID {employee_id}")
-        return
+    try:
+        # Fetch employee details
+        employee_response = requests.get(employee_url)
+        employee_data = employee_response.json()
 
-    todo_list = response.json()
+        # Fetch TODO list
+        todo_response = requests.get(todo_url)
+        todo_list = todo_response.json()
 
-    # Calculate the number of completed tasks
-    completed_tasks = [task for task in todo_list if task["completed"]]
-    num_completed_tasks = len(completed_tasks)
-    total_num_tasks = len(todo_list)
+        # Calculate progress
+        total_tasks = len(todo_list)
+        completed_tasks = sum(1 for task in todo_list if task["completed"])
 
-    # Print the employee information
-    print(f"Employee {employee_name} is done with tasks ({num_completed_tasks}/{total_num_tasks}):")
+        # Display the progress
+        print(f"Employee {employee_data['name']} is done with tasks ({completed_tasks}/{total_tasks}):")
+        for task in todo_list:
+            if task["completed"]:
+                print(f"\t{task['title']}")
 
-    # Print the titles of completed tasks
-    for task in completed_tasks:
-        print(f"\t{task['title']}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error: {e}")
+    except ValueError as e:
+        print(f"Error parsing JSON response: {e}")
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: python script.py <employee_id>")
     else:
         employee_id = int(sys.argv[1])
-        get_employee_info(employee_id)
+        get_employee_todo_progress(employee_id)
