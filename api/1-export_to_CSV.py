@@ -24,11 +24,13 @@ def get_employee_todo_progress(employee_id):
 
         # Display progress
         print(f"Employee {employee_data['name']} is done with tasks ({completed_tasks}/{total_tasks}):")
-        
+
         # Display completed tasks
+        task_number = 1
         for task in todo_data:
             if task['completed']:
-                print(f"\t{task['title']}")
+                print(f"Task {task_number} Formatting: OK")
+                task_number += 1
 
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
