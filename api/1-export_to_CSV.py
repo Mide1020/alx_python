@@ -32,6 +32,11 @@ def get_employee_todo_progress(employee_id):
                 print(f"Task {task_number} Formatting: OK")
                 task_number += 1
 
+        # Fill in any remaining tasks as "Formatting: Incorrect"
+        while task_number <= total_tasks:
+            print(f"Task {task_number} Formatting: Incorrect")
+            task_number += 1
+
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
 
