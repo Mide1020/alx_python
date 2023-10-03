@@ -40,7 +40,7 @@ def get_employee_todo_progress(employee_id):
             # Print the formatted output
             print(f"Employee {employee_name} is done with tasks({completed_tasks}/{total_tasks}):")
             for title in completed_task_titles:
-                print(f"\t{title}")
+                print(f" {title}")
 
         else:
             print(f"Failed to fetch TODO list. Status code: {todos_response.status_code}")
