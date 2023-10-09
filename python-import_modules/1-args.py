@@ -1,16 +1,15 @@
 #!/usr/bin/python
-def safe_print_division(a, b):
-    try:
-        result = a / b
-    except ZeroDivisionError:
-        result = None
-    finally:
-        print("Inside result: {}".format(result))
-        return result
+import sys
 
-if __name__ == "__main__":
-    # Example usage:
-    a = 10
-    b = 2
-    safe_print_division(a, b)
-    
+# Get the number of arguments
+num_args = len(sys.argv) - 1  # Subtract 1 to exclude the script name itself
+
+# Print the number of arguments and the list of arguments
+if num_args == 1:
+    print(f"1 argument:")
+else:
+    print(f"{num_args} arguments:")
+
+# Print the arguments, if any
+for i, arg in enumerate(sys.argv[1:], start=1):
+    print(f"{i}: {arg}")
