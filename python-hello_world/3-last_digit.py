@@ -5,7 +5,11 @@ import random
 number = random.randint(-10000, 10000)
 
 # Get the last digit of the number
-last_digit = abs(number) % 10
+last_digit = abs(number) % 10  # Calculate the absolute value first
+
+# Determine if the last digit should be negative based on the original number
+if number < 0:
+    last_digit = -last_digit
 
 # Print the result based on the last digit
 print("Last digit of", number, "is", last_digit, end=" ")
