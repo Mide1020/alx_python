@@ -13,3 +13,4 @@ if __name__ == "__main__":
     a = 10
     b = 2
     safe_print_division(a, b)
+    
