@@ -12,3 +12,7 @@ else:
     print(f"Number of argument(s): {num_args}.")
     for i, arg in enumerate(sys.argv[1:], start=1):
         print(f"{i}: {arg}")
+
+if __name__ == "__main__":
+    # Additional code to execute if this script is run as the main program
+    pass
