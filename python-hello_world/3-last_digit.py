@@ -1,16 +1,18 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 import random
+
+# Generate a random signed number between -10000 and 10000
 number = random.randint(-10000, 10000)
 
-last_digit = abs(number) % 10
-string = ""
+# Get the last digit of the number
+last_digit = abs(number) % 10  # Use abs() to handle negative numbers
 
-if number < 0:
-    last_digit = -last_digit
+# Print the result based on the last digit
+print("Last digit of", number, "is", last_digit, end=" ")
+
 if last_digit > 5:
-    string = "greater than 5"
+    print("and is greater than 5")
 elif last_digit == 0:
-    string = "0"
+    print("and is 0")
 else:
-    string = "less than 6 and not 0"
-print("Last digit of {}, is {} and is {}".format(number, last_digit, string))
+    print("and is less than 6 and not 0")
