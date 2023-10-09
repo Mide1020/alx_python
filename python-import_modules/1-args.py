@@ -6,11 +6,13 @@ num_args = len(sys.argv) - 1  # Subtract 1 to exclude the script name itself
 
 # Print the number of arguments and the list of arguments
 if num_args == 0:
-    print("No argument.")
-elif num_args == 1:
-    print("1 argument:")
+    print("Number of argument(s): 0.")
+    print(".")
 else:
-    print(f"{num_args} arguments:")
+    print(f"Number of argument(s): {num_args}.")
+    for i, arg in enumerate(sys.argv[1:], start=1):
+        print(f"{i}: {arg}")
 
-for i, arg in enumerate(sys.argv[1:], start=1):
-    print(f"{i}: {arg}")
+if __name__ == "__main__":
+    # Additional code to execute if this script is run as the main program
+    pass
