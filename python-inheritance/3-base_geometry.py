@@ -7,3 +7,5 @@ class BaseGeometry:
     or operations in derived classes.
     """
     pass
+
+print(dir(BaseGeometry))
