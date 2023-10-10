@@ -5,9 +5,10 @@ def safe_print_division(a, b):
     except ZeroDivisionError:
         result = None
     finally:
-        print("Inside result: {}".format(result))
+        result_str = "{:.1f}".format(result) if result is not None else "None"
+        print("Inside result: {}".format(result_str))
         if result is not None:
-            print("{} / {} = {}".format(a, b, result), end="")
+            print("{} / {} = {:.1f}".format(a, b, result))
 
 # Example usage:
 a = 10
