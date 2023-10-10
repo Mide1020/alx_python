@@ -2,13 +2,14 @@
 def safe_print_division(a, b):
     try:
         result = a / b
+        operation = "{} / {} = {:.1f}".format(a, b, result)
     except ZeroDivisionError:
         result = None
+        operation = "{} / {} = None".format(a, b)
     finally:
-        result_str = "{:.1f}".format(result) if result is not None else "None"
-        print("Inside result: {}".format(result_str))
+        print("Inside result: {:.1f}".format(result))
         if result is not None:
-            print("{} / {} = {:.1f}".format(a, b, result))
+            print(operation)
 
 # Example usage:
 a = 10
