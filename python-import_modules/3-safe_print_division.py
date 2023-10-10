@@ -8,8 +8,8 @@ def safe_print_division(a, b):
         operation = f"{a} / {b} is undefined (division by zero)"
     finally:
         print("Inside result: {}".format(result))
-        print("{}".format(operation))
-        return result
+        if result is not None:
+            print("{}".format(operation))
 
 # Example usage:
 a = 10
