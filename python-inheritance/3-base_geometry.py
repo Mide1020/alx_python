@@ -3,11 +3,16 @@
 class BaseGeometry:
     """
     This is an empty base class for geometry-related functionality.
-    It can be used as a base class to define specific geometric shapes
-    or operations in derived classes.
+    
+    Attributes:
+        None
+
+    Methods:
+        None
+
+    Description:
+        BaseGeometry serves as a foundation for defining specific geometric shapes
+        or operations in derived classes. It provides a common base for organizing
+        geometry-related functionality without any specific implementation.
     """
     pass
-
-bg = BaseGeometry()
-
-print("<{} object at {}>".format(type(bg).__name__, hex(id(bg))))
