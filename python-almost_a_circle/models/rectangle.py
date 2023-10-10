@@ -2,6 +2,24 @@ from models.base import Base
 class Rectangle(BaseGeometry):
     """
     Represents a rectangle.
+
+    Attributes:
+        width (int): The width of the rectangle.
+        height (int): The height of the rectangle.
+        x (int): The x-coordinate of the rectangle's position.
+        y (int): The y-coordinate of the rectangle's position.
+        id (int): The ID of the rectangle.
+
+    Methods:
+        __init__(width, height, x=0, y=0, id=None): Initializes a Rectangle instance.
+        width (int): Getter method for width.
+        height (int): Getter method for height.
+        x (int): Getter method for x.
+        y (int): Getter method for y.
+        width (int): Setter method for width.
+        height (int): Setter method for height.
+        x (int): Setter method for x.
+        y (int): Setter method for y.
     """
 
     def __init__(self, width, height, x=0, y=0, id=None):
