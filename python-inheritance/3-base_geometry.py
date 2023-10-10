@@ -8,4 +8,6 @@ class BaseGeometry:
     """
     pass
 
-print(dir(BaseGeometry))
+bg = BaseGeometry()
+
+print("<{} object at {}>".format(type(bg).__name__, hex(id(bg))))
