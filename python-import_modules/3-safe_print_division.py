@@ -7,7 +7,7 @@ def safe_print_division(a, b):
     finally:
         print("Inside result: {}".format(result))
         if result is not None:
-            print("{} / {} = {}".format(a, b, result))
+            print("{} / {} = {}".format(a, b, result), end="")
 
 # Example usage:
 a = 10
