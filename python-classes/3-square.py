@@ -1,33 +1,58 @@
-"""This module defines a Square class.
+# -*- coding: utf-8 -*-
+"""Square Module.
 
-The Square class represents a square with a private instance attribute 'size'.
-It allows instantiation with an optional size, and provides a method 'area' to calculate the square's area.
-The size attribute can be accessed using a property 'size' with a setter for validation.
+This module defines a Square class that represents a square with a private
+instance attribute: size.
+
+Example:
+    Create a square instance with a size of 3:
+    >>> my_square = Square(3)
+
+Attributes:
+    module_level_variable1 (int): Module level variables may be documented in
+        either the ``Attributes`` section of the module docstring, or in an
+        inline docstring immediately following the variable.
+
+        Either form is acceptable, but the two should not be mixed. Choose
+        one convention to document module level variables and be consistent
+        with it.
+
+Todo:
+    * For module TODOs
+    * You have to also use ``sphinx.ext.todo`` extension
+
+.. _Google Python Style Guide:
+   http://google.github.io/styleguide/pyguide.html
 
 """
 
+
 class Square:
-    """A class representing a square.
+    """
+    Represents a square.
 
     Attributes:
         __size (int): The size of the square.
-
-    Methods:
-        _init_(self, size=0): Initializes a square object with an optional size.
-        size(self): Getter method to retrieve the size of the square.
-        size(self, value): Setter method to set the size of the square.
-        area(self): Calculates and returns the area of the square.
     """
 
     def __init__(self, size=0):
+        """
+        Initializes a Square instance.
+
+        Args:
+            size (int, optional): The size of the square. Defaults to 0.
+        """
         self.__size = size
+
+        if not isinstance(size, int):
+            raise TypeError("size must be an integer")
+        elif size < 0:
+            raise ValueError("size must be >= 0")
 
     @property
     def size(self):
-        """Get or set the size of the square.
-
-        The size must be an integer, otherwise a TypeError is raised.
-        If the size is less than 0, a ValueError is raised.
+        """
+        Retrieves the size of the square.
 
         Returns:
             int: The size of the square.
@@ -36,15 +61,26 @@ class Square:
 
     @size.setter
     def size(self, value):
+        """
+        Sets the size of the square.
+
+        Args:
+            value (int): The size of the square.
+
+        Raises:
+            TypeError: If value is not an integer.
+            ValueError: If value is less than 0.
+        """
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
         elif value < 0:
             raise ValueError("size must be >= 0")
-        else:
-            self.__size = value
+
+        self.__size = value
 
     def area(self):
-        """Calculate the area of the square.
+        """
+        Calculates the area of the square.
 
         Returns:
             int: The area of the square.
