@@ -1,42 +1,47 @@
+#!/usr/bin/python3
+"""This Module takes an argument and diaplay all values of a state
+"""
 import MySQLdb
 import sys
 
-# Check if the correct number of arguments is provided
-if len(sys.argv) != 5:
-    print("Usage: python search_states.py <mysql_username> <mysql_password> <database_name> <state_name>")
-    sys.exit(1)
 
-# Get command-line arguments
-mysql_username = sys.argv[1]
-mysql_password = sys.argv[2]
-database_name = sys.argv[3]
-state_name = sys.argv[4]
+def search_states(username, password, database, state_name):
+    """Connect to the MySQL server"""
+    db = MySQLdb.connect(
+        host='localhost',
+        port=3306,
+        user=username,
+        passwd=password,
+        db=database
+    )
 
-# Connect to the MySQL server
-db = MySQLdb.connect(
-    host="localhost",
-    port=3306,
-    user=mysql_username,
-    passwd=mysql_password,
-    db=database_name
-)
+    """Create a cursor object to interact with the database'"""
+    cursor = db.cursor()
 
-# Create a cursor object to interact with the database
-cursor = db.cursor()
+    """Execute the SQL query to retrieve states with matching name"""
+    query = ("SELECT * FROM states "
+             "WHERE BINARY name = '{}' "
+             "ORDER BY id ASC").format(state_name)
+    cursor.execute(query)
 
-# Prepare the SQL query using string formatting
-query = "SELECT * FROM states WHERE name = %s ORDER BY states.id ASC"
+    """Fetch all the rows from the result set"""
+    results = cursor.fetchall()
 
-# Execute the SQL query with the provided state name
-cursor.execute(query, (state_name,))
+    """Print the results"""
+    for row in results:
+        print(row)
 
-# Fetch all the results
-results = cursor.fetchall()
+    """Close the cursor and the database connection"""
+    cursor.close()
+    db.close()
 
-# Display the results
-for row in results:
-    print(row)
-
-# Close the cursor and database connection
-cursor.close()
-db.close()
+if __name__ == "__main__":
+    if len(sys.argv) != 5:
+        print("Usage: python script_name.py <username> <password> "
+              "<database> <state_name>")
+    else:
+        username = sys.argv[1]
+        password = sys.argv[2]
+        database = sys.argv[3]
+        state_name = sys.argv[4]
+        search_states(username, password, database, state_name)
