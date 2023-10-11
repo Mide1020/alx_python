@@ -46,3 +46,4 @@ class Square(Rectangle):
         int: The area of the square.
         """
         return self.__size * self.__size
+    

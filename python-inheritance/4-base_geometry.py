@@ -28,3 +28,4 @@ class BaseGeometry(metaclass=TheMetaclass):
             Exception: This method is not implemented.
         """
         raise Exception("area() is not implemented")
+    
