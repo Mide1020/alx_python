@@ -1,31 +1,22 @@
-"""writing an empty class
+#!/usr/bin/python3
 """
-class BaseGeometry:
+Module on the BaseGeometry class.
+"""
+
+class TheMetaclass(type):
     """
-    This is an empty base class for geometry-related functionality.
-
-    Attributes:
-        None
-
-    Methods:
-        None
-
-    Description:
-        BaseGeometry serves as a foundation for defining specific geometric shapes
-        or operations in derived classes. It provides a common base for organizing
-        geometry-related functionality without any specific implementation.
+    This class contain adefault parent obj.
     """
-def __repr__(self):
-        """
-        Returns a string representation of the BaseGeometry instance.
-
-        Returns:
-            str: A string representation of the instance.
-        """
-        return "<{} object at {}>".format(type(self).__module__ + "." + type(self).__name__, hex(id(self)))
-# Example usage:
-if __name__ == "__main__":
-    bg = BaseGeometry()
-    print(bg)
-    print(dir(bg))
-    print(dir(BaseGeometry))
+    def __dir__(subclass):
+        return [attribute for attribute in super().__dir__() if attribute != '__init_subclass__']
+    
+class BaseGeometry(metaclass=TheMetaclass):
+    """
+    An empty class file defining the base geometry.
+    """
+    def __dir__(subclass):
+        return [attribute for attribute in super().__dir__() if attribute != '__init_subclass__']
+    """
+    Method to remove the initsubclass
+    """
+    pass

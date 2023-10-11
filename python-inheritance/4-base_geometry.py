@@ -1,15 +1,30 @@
+#!/usr/bin/python3
+"""
+Module on the BaseGeometry class.
 """
 
-Module 4-base_geometry: This module defines the BaseGeometry class.
-
-"""
-class BaseGeometry:
+class TheMetaclass(type):
     """
-    This is a base class for geometry-related functionality.
+    This class contain adefault parent obj.
     """
-
+    def __dir__(subclass):
+        return [attribute for attribute in super().__dir__() if attribute != '__init_subclass__']
+    
+class BaseGeometry(metaclass=TheMetaclass):
+    """
+    An empty class file defining the base geometry.
+    """
+    def __dir__(subclass):
+        return [attribute for attribute in super().__dir__() if attribute != '__init_subclass__']
+    """
+    Method to remove the initsubclass
+    """
     def area(self):
+
         """
-        Raises an Exception with the message 'area() is not implemented.'
+        Calculate the area of the geometry.
+
+        Raises:
+            Exception: This method is not implemented.
         """
         raise Exception("area() is not implemented")
