@@ -1,11 +1,15 @@
+#!/usr/bin/python3
+
+"""
+This module on a script that fetches a link
+"""
+
 import requests
 
-url = "https://intranet.hbtn.io/status"
-
-response = requests.get(url)
-response_type = str(type(response.text))
-response_content = response.text
-
-print("Body response:")
-print("\t- type:", response_type)
-print("\t- content:", response_content)
+if __name__ == "__main__":
+    url = "https://alu-intranet.hbtn.io/status"
+    response = requests.get(url)
+    
+    print("Body response:")
+    print("\t- type:", type(response.text))
+    print("\t- content:", response.text)
