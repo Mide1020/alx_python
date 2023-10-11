@@ -1,41 +1,28 @@
+#!/usr/bin/python3
+"""
+Module on a Rectangle class that inherits from Base
+"""
 from models.base import Base
-class Rectangle(BaseGeometry):
+
+class Rectangle (Base):
     """
-    Represents a rectangle.
+    This is the calss defining the Rectangle
 
-    Attributes:
-        width (int): The width of the rectangle.
-        height (int): The height of the rectangle.
-        x (int): The x-coordinate of the rectangle's position.
-        y (int): The y-coordinate of the rectangle's position.
-        id (int): The ID of the rectangle.
-
-    Methods:
-        __init__(width, height, x=0, y=0, id=None): Initializes a Rectangle instance.
-        width (int): Getter method for width.
-        height (int): Getter method for height.
-        x (int): Getter method for x.
-        y (int): Getter method for y.
-        width (int): Setter method for width.
-        height (int): Setter method for height.
-        x (int): Setter method for x.
-        y (int): Setter method for y.
+    Attribute include:
+    __width -> width
+    __height -> height
     """
 
     def __init__(self, width, height, x=0, y=0, id=None):
         """
-        Initializes a Rectangle instance.
+        This function intializes a Instance of the Rectangle
 
         Args:
-            width (int): The width of the rectangle.
-            height (int): The height of the rectangle.
-            x (int): The x-coordinate of the rectangle's position.
-            y (int): The y-coordinate of the rectangle's position.
-            id (int): The ID of the rectangle.
-
-        Raises:
-            TypeError: If width, height, x, or y is not an integer.
-            ValueError: If width or height is not greater than 0, or if x or y is less than 0.
+         width (int): The width of the rectangle.
+        height (int): The height of the rectangle.
+        x (int): The x-coordinate of the rectangle.
+        y (int): The y-coordinate of the rectangle.
+        id (int): The value for the id attribute.
         """
         super().__init__(id)
         self.width = width
@@ -45,12 +32,11 @@ class Rectangle(BaseGeometry):
 
     @property
     def width(self):
-        """Getter method for width."""
         return self.__width
 
     @width.setter
     def width(self, value):
-        """Setter method for width."""
+        # Implement any validation logic you need
         if not isinstance(value, int):
             raise TypeError("width must be an integer")
         if value <= 0:
@@ -59,12 +45,11 @@ class Rectangle(BaseGeometry):
 
     @property
     def height(self):
-        """Getter method for height."""
         return self.__height
 
     @height.setter
     def height(self, value):
-        """Setter method for height."""
+        # Implement validation logic you need
         if not isinstance(value, int):
             raise TypeError("height must be an integer")
         if value <= 0:
@@ -73,12 +58,11 @@ class Rectangle(BaseGeometry):
 
     @property
     def x(self):
-        """Getter method for x."""
         return self.__x
 
     @x.setter
     def x(self, value):
-        """Setter method for x."""
+        # Implement validation logic you need
         if not isinstance(value, int):
             raise TypeError("x must be an integer")
         if value < 0:
@@ -87,14 +71,44 @@ class Rectangle(BaseGeometry):
 
     @property
     def y(self):
-        """Getter method for y."""
         return self.__y
 
     @y.setter
     def y(self, value):
-        """Setter method for y."""
+        # Implement validation logic you need
         if not isinstance(value, int):
             raise TypeError("y must be an integer")
         if value < 0:
             raise ValueError("y must be >= 0")
         self.__y = value
+
+    def area(self):
+        """ Function for the area of Rectangle"""
+        return self.__width * self.__height
+    
+    def display(self):
+        """ Function for the display  """
+        for _ in range(self.__y):
+            print()
+        for _ in range(self.__height):
+            print(" " * self.__x + "#" * self.__width)
+    
+    def __str__(self):
+        return f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - {self.__width}/{self.__height}"
+    
+    def update(self, *args, **kwargs):
+        """This function that assigns argument"""
+        if len(args) > 0:
+            self.id = args[0]
+        if len(args) > 1:
+            self.width = args[1]
+        if len(args) > 2:
+            self.height = args[2]
+        if len(args) > 3:
+            self.x = args[3]
+        if len(args) > 4:
+            self.y = args[4]
+        
+        if len(args) == 0 or len(kwargs) > 0:
+            for key, value in kwargs.items():
+                setattr(self, key, value)

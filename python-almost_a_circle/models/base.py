@@ -1,18 +1,22 @@
 #!/usr/bin/python3
-
-"""this is to write the first class base
+"""
+Module on Base
+This module demostrate a class base that has private attribute.
 """
 
+
 class Base:
-    """Base class for all future classes in this project.
-    Manages the id attribute in all future classes and avoids duplicating the same code and bugs
+    """
+    This is a class for the base
     """
     __nb_objects = 0
-
     def __init__(self, id=None):
-        """Initializes a new instances of the Base class.
-        Args:
-        id(int):The ID of instances.
+        """
+        Intializes a Base instance
+        args: 
+        id (int): The value for the attribute.
+        Attributes:
+        id (int): The public instance attribute for storing the id.
         """
         if id is not None:
             self.id = id
