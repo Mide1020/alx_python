@@ -1,113 +1,73 @@
 """
-Flask Web Application
-
-This script sets up a Flask web application with multiple routes for displaying
-different messages and HTML content based on URL patterns.
-
-Routes:
-    /: Display "Hello HBNB!"
-    /hbnb: Display "HBNB"
-    /c/<text>: Display "C ", followed by the value of the text variable (replace
-                underscore _ symbols with a space)
-    /python/<text>: Display "Python ", followed by the value of the text variable
-                    (replace underscore _ symbols with a space). If text is not
-                    provided, the default value "is cool" is used.
-    /number/<n>: Display "<n> is a number" only if n is an integer
-    /number_template/<n>: Display an HTML page with the text "Number: n" inside
-                          an H1 tag in the BODY, only if n is an integer.
-
-Usage:
-    Run this script to start the Flask web application. Access the application
-    by opening a web browser and navigating to different routes:
-    - http://localhost:5000/ for "Hello HBNB!"
-    - http://localhost:5000/hbnb for "HBNB"
-    - http://localhost:5000/c/your_text_here for "C your text here"
-    - http://localhost:5000/python/your_text_here for "Python your text here"
-    - http://localhost:5000/python/ for "Python is cool"
-    - http://localhost:5000/number/42 for "42 is a number"
-    - http://localhost:5000/number_template/42 for an HTML page with "Number: 42"
+This script creates a simple Flask web application.
 """
 
-from flask import Flask, render_template_string
+from flask import Flask, escape, render_template
 
 app = Flask(__name__)
 
-@app.route('/', strict_slashes=False)
-def hello_hbnb():
+@app.route("/", strict_slashes=False)
+def hello():
     """
-    Route handler for the root URL ('/').
+    This function defines the route '/' which displays "Hello HBNB!".
 
     Returns:
-        str: The message "Hello HBNB!" to be displayed in the browser.
+        str: The string "Hello HBNB!" which is displayed in the browser.
     """
     return "Hello HBNB!"
 
-@app.route('/hbnb', strict_slashes=False)
+@app.route("/hbnb", strict_slashes=False)
 def hbnb():
     """
-    Route handler for the '/hbnb' URL.
+    This function defines the route '/hbnb' which displays "HBNB".
 
     Returns:
-        str: The message "HBNB" to be displayed in the browser.
+        str: The string "HBNB" which is displayed in the browser.
     """
     return "HBNB"
 
-@app.route('/c/<text>', strict_slashes=False)
-def c_text(text):
+@app.route("/c/<text>", strict_slashes=False)
+def c_is_fun(text):
     """
-    Route handler for URLs with the '/c/<text>' pattern.
-
-    Args:
-        text (str): The text provided in the URL.
+    This function defines the route '/c/<text>' which displays "C " followed by the value of the text variable.
 
     Returns:
-        str: The message "C " followed by the value of the text variable, with
-             underscores (_) replaced by spaces.
+        str: The string "C " followed by the text value, with underscores replaced by spaces.
     """
-    return "C " + text.replace("_", " ")
+    return "C " + escape(text.replace("_", " "))
 
-@app.route('/python/', defaults={'text': 'is cool'}, strict_slashes=False)
-@app.route('/python/<text>', strict_slashes=False)
-def python_text(text):
+@app.route("/python/", defaults={"text": "is cool"}, strict_slashes=False)
+@app.route("/python/<text>", strict_slashes=False)
+def python_is_cool(text):
     """
-    Route handler for URLs with the '/python/<text>' pattern.
-
-    Args:
-        text (str, optional): The text provided in the URL. If not provided, uses
-                              the default value "is cool".
+    This function defines the route '/python/' and '/python/<text>' which displays "Python " followed by the
+    value of the text variable.
 
     Returns:
-        str: The message "Python " followed by the value of the text variable, with
-             underscores (_) replaced by spaces.
+        str: The string "Python " followed by the text value, with underscores replaced by spaces.
     """
-    return "Python " + text.replace("_", " ")
+    return "Python " + escape(text.replace("_", " "))
 
-@app.route('/number/<int:n>', strict_slashes=False)
-def number(n):
+@app.route("/number/<int:n>", strict_slashes=False)
+def is_number(n):
     """
-    Route handler for URLs with the '/number/<n>' pattern.
-
-    Args:
-        n (int): The number provided in the URL.
+    This function defines the route '/number/<n>' which displays "<n> is a number" if n is an integer.
 
     Returns:
-        str: The message "<n> is a number".
+        str: The string "<n> is a number" if n is an integer.
     """
-    return f"{n} is a number"
+    return "{} is a number".format(n)
 
-@app.route('/number_template/<int:n>', strict_slashes=False)
+@app.route("/number_template/<int:n>", strict_slashes=False)
 def number_template(n):
     """
-    Route handler for URLs with the '/number_template/<n>' pattern.
-
-    Args:
-        n (int): The number provided in the URL.
+    This function defines the route '/number_template/<n>' which displays an HTML page with the H1 tag
+    "Number: n" inside the BODY tag.
 
     Returns:
-        str: An HTML page with an H1 tag containing "Number: n".
+        render_template: Renders the HTML template with the H1 tag displaying "Number: n".
     """
-    html_content = f"<html><body><h1>Number: {n}</h1></body></html>"
-    return render_template_string(html_content)
+    return render_template("5-number.html", n=n)
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
