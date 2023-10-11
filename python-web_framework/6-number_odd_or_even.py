@@ -1,70 +1,66 @@
 """
-Flask Web Application
-
-This script sets up a Flask web application with multiple routes for displaying
-different messages and HTML content based on URL patterns.
-
-Routes:
-    /: Display "Hello HBNB!"
-    /hbnb: Display "HBNB"
-    /c/<text>: Display "C ", followed by the value of the text variable (replace
-                underscore _ symbols with a space)
-    /python/<text>: Display "Python ", followed by the value of the text variable
-                    (replace underscore _ symbols with a space). If text is not
-                    provided, the default value "is cool" is used.
-    /number/<n>: Display "<n> is a number" only if n is an integer
-    /number_template/<n>: Display an HTML page with the text "Number: n" inside
-                          an H1 tag in the BODY, only if n is an integer.
-    /number_odd_or_even/<n>: Display an HTML page with the text "Number: n is even|odd"
-                             inside an H1 tag in the BODY, only if n is an integer.
-
-Usage:
-    Run this script to start the Flask web application. Access the application
-    by opening a web browser and navigating to different routes:
-    - http://localhost:5000/ for "Hello HBNB!"
-    - http://localhost:5000/hbnb for "HBNB"
-    - http://localhost:5000/c/your_text_here for "C your text here"
-    - http://localhost:5000/python/your_text_here for "Python your text here"
-    - http://localhost:5000/python/ for "Python is cool"
-    - http://localhost:5000/number/42 for "42 is a number"
-    - http://localhost:5000/number_template/42 for an HTML page with "Number: 42"
-    - http://localhost:5000/number_odd_or_even/42 for an HTML page with "Number: 42 is even|odd"
-
-Note:
-    Ensure that the 'number_template.html' and 'number_odd_even_template.html' files are located in the same directory
-    as this script for correct rendering of the /number_template/<n> and /number_odd_or_even/<n> routes.
-
+This script creates a simple Flask web application.
 """
 
-from flask import Flask, render_template
+from flask import Flask, escape, render_template
 
 app = Flask(__name__)
 
-@app.route('/', strict_slashes=False)
-def hello_hbnb():
+@app.route("/", strict_slashes=False)
+def hello():
     """
-    Route handler for the root URL ('/').
-
-    Returns:
-        str: The message "Hello HBNB!" to be displayed in the browser.
+    This function defines the route '/' which displays "Hello HBNB!".
     """
     return "Hello HBNB!"
 
-# ... (Previous routes and handlers)
-
-@app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
-def number_odd_or_even(n):
+@app.route("/hbnb", strict_slashes=False)
+def hbnb():
     """
-    Route handler for URLs with the '/number_odd_or_even/<n>' pattern.
+    This function defines the route '/hbnb' which displays "HBNB".
+    """
+    return "HBNB"
 
-    Args:
-        n (int): The number provided in the URL.
+@app.route("/c/<text>", strict_slashes=False)
+def c_is_fun(text):
+    """
+    This function defines the route '/c/<text>' which displays "C " followed by the value of the text variable.
+    """
+    return "C " + escape(text.replace("_", " "))
+
+@app.route("/python/", defaults={"text": "is cool"}, strict_slashes=False)
+@app.route("/python/<text>", strict_slashes=False)
+def python_is_cool(text):
+    """
+    This function defines the route '/python/' and '/python/<text>' which displays "Python " followed by the
+    value of the text variable.
+    """
+    return "Python " + escape(text.replace("_", " "))
+
+@app.route("/number/<int:n>", strict_slashes=False)
+def is_number(n):
+    """
+    This function defines the route '/number/<n>' which displays "<n> is a number" if n is an integer.
+    """
+    return "{} is a number".format(n)
+
+@app.route("/number_template/<int:n>", strict_slashes=False)
+def number_template(n):
+    """
+    This function defines the route '/number_template/<n>' which displays an HTML page with the H1 tag
+    "Number: n" inside the BODY tag.
 
     Returns:
-        str: An HTML page with an H1 tag containing "Number: n is even|odd".
+        render_template: Renders the HTML template with the H1 tag displaying "Number: n".
+    """
+    return render_template("5-number.html", n=n)
+
+@app.route( "/number_odd_or_even/<int:n>", strict_slashes=False)
+def number_odd_even(n):
+    """
+    This fuction return an html response if number is odd or even
     """
     odd_or_even = "even" if n % 2 == 0 else "odd"
-    return render_template('number_odd_even_template.html', number=n, odd_or_even=odd_or_even)
+    return render_template("6-number_odd_or_even.html", n=n, odd_or_even=odd_or_even)
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
