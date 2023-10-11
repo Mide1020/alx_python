@@ -1,42 +1,47 @@
+#!/usr/bin/python3
+"""Module lists cities and execute the quary
+"""
 import MySQLdb
 import sys
 
-# Check if the correct number of arguments is provided
-if len(sys.argv) != 4:
-    print("Usage: python list_cities.py <mysql_username> <mysql_password> <database_name>")
-    sys.exit(1)
 
-# Get command-line arguments
-mysql_username = sys.argv[1]
-mysql_password = sys.argv[2]
-database_name = sys.argv[3]
-
-try:
-    # Connect to the MySQL server
+def list_cities(username, password, database):
+    """Connect to the MySQL server"""
     db = MySQLdb.connect(
-        host="localhost",
+        host='localhost',
         port=3306,
-        user=mysql_username,
-        passwd=mysql_password,
-        db=database_name
+        user=username,
+        passwd=password,
+        db=database
     )
 
-    # Create a cursor object to interact with the database
+    """Create a cursor object to interact with the database"""
     cursor = db.cursor()
 
-    # Execute the SQL query to retrieve cities with their corresponding states
-    cursor.execute("SELECT cities.id, cities.name, states.name FROM cities JOIN states ON cities.state_id = states.id ORDER BY cities.id ASC")
+    """Execute the SQL query to retrieve all cities and order by id"""
+    query = ("SELECT cities.id, cities.name, states.name "
+             "FROM cities "
+             "JOIN states ON cities.state_id = states.id "
+             "ORDER BY cities.id ASC")
 
-    # Fetch all the results
+    cursor.execute(query)
+
+    """"Fetch all the rows from the result set"""
     results = cursor.fetchall()
 
-    # Display the results
+    """Print the results"""
     for row in results:
         print(row)
 
-except MySQLdb.Error as e:
-    print(f"Error: {e}")
-finally:
-    # Close the cursor and database connection
+    """Close the cursor and the database connection"""
     cursor.close()
     db.close()
+
+if __name__ == "__main__":
+    if len(sys.argv) != 4:
+        print("Usage: python script_name.py <username> <password> <database>")
+    else:
+        username = sys.argv[1]
+        password = sys.argv[2]
+        database = sys.argv[3]
+        list_cities(username, password, database)
