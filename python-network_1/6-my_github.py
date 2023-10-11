@@ -1,19 +1,21 @@
+#!/usr/bin/python3
+""" URL for my Github
+"""
 import requests
 import sys
 
-if len(sys.argv) != 3:
-    print("Usage: {} <mide1020> <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>".format(sys.argv[0]))
-)    sys.exit(1)
+if __name__ == "__main__":
+    username = sys.argv[1]
+    password = sys.argv[2]
 
-username = sys.argv[1]
-access_token = sys.argv[2]
+    url = "https://api.github.com/user"
+    response = requests.get(url, auth=(username, password))
 
-url = "https://api.github.com/user"
-
-response = requests.get(url, auth=(username, access_token))
-
-try:
-    json_response = response.json()
-    print(json_response.get("id"))
-except ValueError:
-    print("None")
+    try:
+        user_info = response.json()
+        if "id" in user_info:
+            print(user_info["id"])
+        else:
+            print("None")
+    except ValueError:
+        print("None")
